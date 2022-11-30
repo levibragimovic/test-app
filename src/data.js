@@ -1,34 +1,17 @@
-export const directions = [
-  {
-    'code': 'BTC',
-    'name': 'Bitcoin BTC '
-  },
-  {
-    'code': 'ETH',
-    'name': 'Ethereum ETH '
-  },
-  {
-    'code': 'CASHUSD',
-    'name': 'Наличные USD '
-  },
-  {
-    'code': 'CASHRUB',
-    'name': 'Наличные RUB '
-  },
-  {
-    'code': 'ACRUB',
-    'name': 'Альфа-банк RUB '
-  },
-  {
-    'code': 'SBERRUB',
-    'name': 'Сбербанк RUB '
-  },
-  {
-    'code': 'TCSBRUB',
-    'name': 'Тинькофф RUB '
-  },
-  {
-    'code': 'USDTTRC',
-    'name': 'Tether TRC20 USDT '
-  }
-];
+// function helper(arr) {
+//   let res = [];
+//   arr.forEach((el) => {
+//     if (el.selected) {
+//       el.values.forEach((a) => {
+//         res.push(a);
+//       });
+//     }
+//   });
+//   return res;
+// }
+// let activeTabs = helper(crypto);
+// let res = directions.filter((el) => {
+//   return activeTabs.includes(el.code);
+// });
+
+// console.log(res.map((el) => el.name));

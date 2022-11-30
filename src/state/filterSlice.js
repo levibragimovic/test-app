@@ -1,39 +1,93 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable array-callback-return */
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  all: true,
-  crypto: true,
-  cash: true,
-  rub: true,
-  uah: true
+const firstState = {
+  filtersList: [
+    { active: false, value: 'all', text: 'Все', id: 1 },
+    {
+      active: false,
+      value: 'crypto',
+      text: 'Криптовалюты',
+      id: 2,
+      values: ['BTC', 'ETH', 'USDTTRC']
+    },
+    {
+      active: false,
+      value: 'cash',
+      text: 'Наличные',
+      id: 3,
+      values: ['CASHUSD', 'CASHRUB']
+    },
+    {
+      active: false,
+      value: 'rub',
+      text: 'Банки RUB',
+      id: 4,
+      values: ['ACRUB', 'SBERRUB', 'TCSBRUB']
+    },
+    {
+      active: false,
+      value: 'uah',
+      text: 'Банки UAH',
+      id: 5,
+      values: ['ACRUB', 'SBERRUB', 'TCSBRUB']
+    }
+  ],
+  selectedCategory: [],
+  directions: [
+    {
+      'code': 'BTC',
+      'name': 'Bitcoin BTC '
+    },
+    {
+      'code': 'ETH',
+      'name': 'Ethereum ETH '
+    },
+    {
+      'code': 'CASHUSD',
+      'name': 'Наличные USD '
+    },
+    {
+      'code': 'CASHRUB',
+      'name': 'Наличные RUB '
+    },
+    {
+      'code': 'ACRUB',
+      'name': 'Альфа-банк RUB '
+    },
+    {
+      'code': 'SBERRUB',
+      'name': 'Сбербанк RUB '
+    },
+    {
+      'code': 'TCSBRUB',
+      'name': 'Тинькофф RUB '
+    },
+    {
+      'code': 'USDTTRC',
+      'name': 'Tether TRC20 USDT '
+    }
+  ]
 };
 
 const filterSlice = createSlice({
   name: 'filter',
-  initialState: initialState,
+  initialState: firstState,
   reducers: {
     filterChageReducer: (state, action) => {
-      state[action.payload.name] = !state[action.payload.name];
-      if (state.crypto && state.cash && state.rub && state.uah) {
-        state.all = true;
-      } else {
-        state.all = false;
-      }
+      state.filtersList = state.filtersList.map((el) => {
+        if (el.value === action.payload.value) {
+          return { ...el, active: true };
+        } else return { ...el, active: false };
+      });
     },
-    filterAll: (state) => {
-      if (state.all) {
-        state.all = false;
-        state.crypto = false;
-        state.cash = false;
-        state.rub = false;
-        state.uah = false;
-      } else {
-        state.all = true;
-        state.crypto = true;
-        state.cash = true;
-        state.rub = true;
-        state.uah = true;
-      }
+    filterAll: (state, action) => {
+      state.filtersList = state.filtersList.map((el) => {
+        if (action.payload.active) {
+          return { ...el, active: true };
+        } else return { ...el, active: false };
+      });
     }
   }
 });
